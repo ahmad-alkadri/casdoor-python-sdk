@@ -17,7 +17,7 @@ from unittest import IsolatedAsyncioTestCase, mock
 from requests import Response
 
 from src.casdoor.async_main import AsyncCasdoorSDK
-from src.casdoor.user import User, UserSDK
+from src.casdoor.user import User, _UserSDK
 import src.tests.config as tcfg
 
 

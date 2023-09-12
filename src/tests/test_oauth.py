@@ -17,7 +17,7 @@ from unittest import TestCase, mock
 from requests import Response
 
 from src.casdoor.main import CasdoorSDK
-from src.casdoor.user import UserSDK
+from src.casdoor.user import _UserSDK
 import src.tests.config as tcfg
 
 
@@ -52,7 +52,7 @@ class TestOAuth(TestCase):
 
     @staticmethod
     def get_user_sdk():
-        usersdk = UserSDK(
+        UserSDK = _UserSDK(
             endpoint=tcfg.endpoint,
             client_id=tcfg.client_id,
             client_secret=tcfg.client_secret,
@@ -60,7 +60,7 @@ class TestOAuth(TestCase):
             org_name=tcfg.org_name,
             application_name=tcfg.application_name,
         )
-        return usersdk
+        return UserSDK
 
     def test__oauth_token_request(self):
         sdk = self.get_sdk()
