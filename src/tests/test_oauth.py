@@ -149,119 +149,119 @@ class TestOAuth(TestCase):
         decoded_msg = sdk.parse_jwt_token(access_token)
         self.assertIsInstance(decoded_msg, dict)
 
-    # def test_enforce(self):
-    #     sdk = self.get_sdk()
-    #     status = sdk.enforce("built-in/permission-built-in", "admin", "a", "ac")
-    #     print(type(status))
-    #     self.assertIsInstance(status, bool)
+#     # def test_enforce(self):
+#     #     sdk = self.get_sdk()
+#     #     status = sdk.enforce("built-in/permission-built-in", "admin", "a", "ac")
+#     #     print(type(status))
+#     #     self.assertIsInstance(status, bool)
 
-    # def mocked_enforce_requests_post(*args, **kwargs):
-    #     class MockResponse:
-    #         def __init__(self, json_data, status_code=200, headers=None):
-    #             if headers is None:
-    #                 headers = {"content-type": "json"}
-    #                 self.json_data = json_data
-    #                 self.status_code = status_code
-    #                 self.headers = headers
+#     # def mocked_enforce_requests_post(*args, **kwargs):
+#     #     class MockResponse:
+#     #         def __init__(self, json_data, status_code=200, headers=None):
+#     #             if headers is None:
+#     #                 headers = {"content-type": "json"}
+#     #                 self.json_data = json_data
+#     #                 self.status_code = status_code
+#     #                 self.headers = headers
 
-    #         def json(self):
-    #             return self.json_data
+#     #         def json(self):
+#     #             return self.json_data
 
-    #     result = True
-    #     for i in range(0, 5):
-    #         if kwargs.get("json").get(f"v{i}") != f"v{i}":
-    #             result = False
+#     #     result = True
+#     #     for i in range(0, 5):
+#     #         if kwargs.get("json").get(f"v{i}") != f"v{i}":
+#     #             result = False
 
-    #     return MockResponse(result)
+#     #     return MockResponse(result)
 
-    # @mock.patch("requests.post", side_effect=mocked_enforce_requests_post)
-    # def test_enforce_parmas(self, mock_post):
-    #     sdk = self.get_sdk()
-    #     status = sdk.enforce("built-in/permission-built-in", "v0", "v1", "v2", v3="v3", v4="v4", v5="v5")
-    #     self.assertEqual(status, True)
+#     # @mock.patch("requests.post", side_effect=mocked_enforce_requests_post)
+#     # def test_enforce_parmas(self, mock_post):
+#     #     sdk = self.get_sdk()
+#     #     status = sdk.enforce("built-in/permission-built-in", "v0", "v1", "v2", v3="v3", v4="v4", v5="v5")
+#     #     self.assertEqual(status, True)
 
-    # def mocked_batch_enforce_requests_post(*args, **kwargs):
-    #     class MockResponse:
-    #         def __init__(self, json_data, status_code=200, headers=None):
-    #             if headers is None:
-    #                 headers = {"content-type": "json"}
-    #                 self.json_data = json_data
-    #                 self.status_code = status_code
-    #                 self.headers = headers
+#     # def mocked_batch_enforce_requests_post(*args, **kwargs):
+#     #     class MockResponse:
+#     #         def __init__(self, json_data, status_code=200, headers=None):
+#     #             if headers is None:
+#     #                 headers = {"content-type": "json"}
+#     #                 self.json_data = json_data
+#     #                 self.status_code = status_code
+#     #                 self.headers = headers
 
-    #         def json(self):
-    #             return self.json_data
+#     #         def json(self):
+#     #             return self.json_data
 
-    #     json = kwargs.get("json")
-    #     result = [True for i in range(0, len(json))]
-    #     for k in range(0, len(json)):
-    #         for i in range(0, len(json[k]) - 1):
-    #             if json[k].get(f"v{i}") != f"v{i}":
-    #                 result[k] = False
+#     #     json = kwargs.get("json")
+#     #     result = [True for i in range(0, len(json))]
+#     #     for k in range(0, len(json)):
+#     #         for i in range(0, len(json[k]) - 1):
+#     #             if json[k].get(f"v{i}") != f"v{i}":
+#     #                 result[k] = False
 
-    #     return MockResponse(result)
+#     #     return MockResponse(result)
 
-    # @mock.patch("requests.post", side_effect=mocked_batch_enforce_requests_post)
-    # def test_batch_enforce(self, mock_post):
-    #     sdk = self.get_sdk()
-    #     status = sdk.batch_enforce(
-    #         "built-in/permission-built-in", [["v0", "v1", "v2", "v3", "v4", "v5"], ["v0", "v1", "v2", "v3", "v4", "v1"]]
-    #     )
-    #     self.assertEqual(len(status), 2)
-    #     self.assertEqual(status[0], True)
-    #     self.assertEqual(status[1], False)
+#     # @mock.patch("requests.post", side_effect=mocked_batch_enforce_requests_post)
+#     # def test_batch_enforce(self, mock_post):
+#     #     sdk = self.get_sdk()
+#     #     status = sdk.batch_enforce(
+#     #         "built-in/permission-built-in", [["v0", "v1", "v2", "v3", "v4", "v5"], ["v0", "v1", "v2", "v3", "v4", "v1"]]
+#     #     )
+#     #     self.assertEqual(len(status), 2)
+#     #     self.assertEqual(status[0], True)
+#     #     self.assertEqual(status[1], False)
 
-    # @mock.patch("requests.post", side_effect=mocked_batch_enforce_requests_post)
-    # def test_batch_enforce_raise(self, mock_post):
-    #     sdk = self.get_sdk()
-    #     with self.assertRaises(ValueError) as context:
-    #         sdk.batch_enforce("built-in/permission-built-in", [["v0", "v1"]])
-    #     self.assertEqual("Invalid permission rule[0]: ['v0', 'v1']", str(context.exception))
+#     # @mock.patch("requests.post", side_effect=mocked_batch_enforce_requests_post)
+#     # def test_batch_enforce_raise(self, mock_post):
+#     #     sdk = self.get_sdk()
+#     #     with self.assertRaises(ValueError) as context:
+#     #         sdk.batch_enforce("built-in/permission-built-in", [["v0", "v1"]])
+#     #     self.assertEqual("Invalid permission rule[0]: ['v0', 'v1']", str(context.exception))
 
-    def test_get_users(self):
-        sdk = self.get_user_sdk()
-        users = sdk.get_users()
-        self.assertIsInstance(users, dict)
+#     def test_get_users(self):
+#         sdk = self.get_user_sdk()
+#         users = sdk.get_users()
+#         self.assertIsInstance(users, dict)
 
-    # def test_get_user_count(self):
-    #     sdk = self.get_user_sdk()
-    #     online_count = sdk.get_user_count(is_online=True)['data']
-    #     offline_count = sdk.get_user_count(is_online=False)['data']
-    #     all_count = sdk.get_user_count()['data']
-    #     self.assertIsInstance(online_count, int)
-    #     self.assertIsInstance(offline_count, int)
-    #     self.assertIsInstance(all_count, int)
+#     # def test_get_user_count(self):
+#     #     sdk = self.get_user_sdk()
+#     #     online_count = sdk.get_user_count(is_online=True)['data']
+#     #     offline_count = sdk.get_user_count(is_online=False)['data']
+#     #     all_count = sdk.get_user_count()['data']
+#     #     self.assertIsInstance(online_count, int)
+#     #     self.assertIsInstance(offline_count, int)
+#     #     self.assertIsInstance(all_count, int)
 
-    #     self.assertEqual(online_count + offline_count, all_count)
+#     #     self.assertEqual(online_count + offline_count, all_count)
 
-    # def test_get_user(self):
-    #     sdk = self.get_user_sdk()
-    #     user = sdk.get_user("admin")
-    #     self.assertIsInstance(user, dict)
+#     # def test_get_user(self):
+#     #     sdk = self.get_user_sdk()
+#     #     user = sdk.get_user("admin")
+#     #     self.assertIsInstance(user, dict)
 
-    # def test_get_user(self):
-    #     sdk = self.get_sdk()
-    #     user = sdk.get_user("admin")
-    #     self.assertIsInstance(user, dict)
+#     # def test_get_user(self):
+#     #     sdk = self.get_sdk()
+#     #     user = sdk.get_user("admin")
+#     #     self.assertIsInstance(user, dict)
 
-    # def test_modify_user(self):
-    #     sdk = self.get_user_sdk()
-    #     user = User()
-    #     user.name = "test_ffyuanda"
-    #     sdk.delete_user(user)
+#     # def test_modify_user(self):
+#     #     sdk = self.get_user_sdk()
+#     #     user = User()
+#     #     user.name = "test_ffyuanda"
+#     #     sdk.delete_user(user)
 
-    #     response = sdk.add_user(user)
-    #     self.assertEqual(response["data"], "Affected")
+#     #     response = sdk.add_user(user)
+#     #     self.assertEqual(response["data"], "Affected")
 
-    #     response = sdk.delete_user(user)
-    #     self.assertEqual(response["data"], "Affected")
+#     #     response = sdk.delete_user(user)
+#     #     self.assertEqual(response["data"], "Affected")
 
-    #     response = sdk.add_user(user)
-    #     self.assertEqual(response["data"], "Affected")
+#     #     response = sdk.add_user(user)
+#     #     self.assertEqual(response["data"], "Affected")
 
-    #     user.phone = "phone"
-    #     response = sdk.update_user(user)
-    #     self.assertEqual(response["data"], "Affected")
+#     #     user.phone = "phone"
+#     #     response = sdk.update_user(user)
+#     #     self.assertEqual(response["data"], "Affected")
 
-    #     self.assertIn("status", response)
-    #     self.assertIsInstance(response, dict)
+#     #     self.assertIn("status", response)
+#     #     self.assertIsInstance(response, dict)

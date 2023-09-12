@@ -31,6 +31,5 @@ nCCJHBcAyFnm1hdvdwEdH33jDBjNB6ciotJZrf/3VYaIWSalADosHAgMWfXuWP+h
 endpoint='https://door.casdoor.com'
 client_id='294b09fbc17f95daf2fe'
 client_secret='dd8982f7046ccba1bbd7851d5c1ece4e52bf039d'
-certificate=certificate
 org_name='casbin'
 application_name='app-vue-python-example'
